@@ -9,18 +9,26 @@
             <input type="number" name="phoneNo" required>
             <button>Submit</button>
         </form>
+        <ul id="listOfUser"></ul>
         <script>
             function saveToLocalStorage(e){
                 event.preventDefault();
                 const name=e.target.username.value;
                 const email=e.target.emailId.value;
                 const mobile=e.target.phoneNo.value;
-                localStorage.setItem('name',name);
-                localStorage.setItem('email',email);
-                localStorage.setItem('phoneNo',phoneNo);
-
-
-
+              
+                const newObj={
+                    name:name;
+                    email:email;
+                    mobile:mobile;
+                }
+                localStorage.setItem(newObj.email,JSON.stringify(newObj));
+                showUser(newObj)
+            }
+            function showUser(user){
+                const parentNode=document.getElementById("listOfUser");
+                const childHTML=`<li> ${user.name} - ${user.email} </li>`;
+                parenrNode.innerHTML=parenrNode.innerHTML+childHTML;
             }
         </script>
     </body>
